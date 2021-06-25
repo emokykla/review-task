@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+    <div class="container pt-5">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {{ message|raw }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <h1>Click counter value is {{ counter.count }}.</h1>
+        {% if lastUpdate %}
+            <p>Last update was at {{ lastUpdate.timestamp }}</p>
+        {% endif %}
+        <p>Please click this button to increment counter.</p>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <input type="submit" class="btn btn-primary btn-lg">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
